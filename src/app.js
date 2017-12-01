@@ -7,6 +7,10 @@ import configureStore from './store/configureStore';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
+// Used inside ExpenseForm, init here instead of in ExpenseForm
+import 'react-dates/initialize';
+
+
 import { addExpense, removeExpense, editExpense } from './actions/expenses';
 import { setTextFilter } from './actions/filters';
 import getVisibleExpenses from './selectors/expenses';
