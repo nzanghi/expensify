@@ -19,20 +19,9 @@ const store = configureStore();
 //   console.log(visibleExpenses);
 // });
 
-store.dispatch(
-  addExpense({ description: 'Water Bill', note: '', amount: 500, createdAt: 1 })
-);
-
-store.dispatch(
-  addExpense({
-    description: 'Electric Bill',
-    note: '',
-    amount: 600,
-    createdAt: 1
-  })
-);
-
-store.dispatch(setTextFilter('water'));
+store.dispatch(addExpense({ description: 'Water Bill', note: '', amount: 4500, createdAt: 100000 }));
+store.dispatch(addExpense({ description: 'Electric Bill', note: '', amount: 1000, createdAt: -5000 }));
+store.dispatch(addExpense({ description: 'Rent', note: '', amount: 109500, createdAt: 1 }));
 
 const state = store.getState();
 const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
