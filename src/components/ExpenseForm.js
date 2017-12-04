@@ -1,11 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
-// Moved initializtion of css to app.js
 import 'react-dates/lib/css/_datepicker.css';
+
 export default class ExpenseForm extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       description: props.expense ? props.expense.description : '',
       note: props.expense ? props.expense.note : '',
@@ -15,21 +16,22 @@ export default class ExpenseForm extends React.Component {
       error: ''
     };
   }
-  onDescriptionChange = e => {
+  onDescriptionChange = (e) => {
     const description = e.target.value;
     this.setState(() => ({ description }));
   };
-  onNoteChange = e => {
+  onNoteChange = (e) => {
     const note = e.target.value;
     this.setState(() => ({ note }));
   };
-  onAmountChange = e => {
+  onAmountChange = (e) => {
     const amount = e.target.value;
+
     if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
       this.setState(() => ({ amount }));
     }
   };
-  onDateChange = createdAt => {
+  onDateChange = (createdAt) => {
     if (createdAt) {
       this.setState(() => ({ createdAt }));
     }
@@ -37,11 +39,10 @@ export default class ExpenseForm extends React.Component {
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }));
   };
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
 
     if (!this.state.description || !this.state.amount) {
-      // Set error state equal to 'Please provide description and amount.'
       this.setState(() => ({ error: 'Please provide description and amount.' }));
     } else {
       this.setState(() => ({ error: '' }));
@@ -65,7 +66,12 @@ export default class ExpenseForm extends React.Component {
             value={this.state.description}
             onChange={this.onDescriptionChange}
           />
-          <input type="text" placeholder="Amount" value={this.state.amount} onChange={this.onAmountChange} />
+          <input
+            type="text"
+            placeholder="Amount"
+            value={this.state.amount}
+            onChange={this.onAmountChange}
+          />
           <SingleDatePicker
             date={this.state.createdAt}
             onDateChange={this.onDateChange}
@@ -78,10 +84,11 @@ export default class ExpenseForm extends React.Component {
             placeholder="Add a note for your expense (optional)"
             value={this.state.note}
             onChange={this.onNoteChange}
-          />
+          >
+          </textarea>
           <button>Add Expense</button>
         </form>
       </div>
-    );
+    )
   }
 }
