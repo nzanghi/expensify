@@ -14,6 +14,7 @@ const ExpenseList = (props) => (
 
 const mapStateToProps = (state) => {
   return {
+    // Where selector is actually used to filter the data
     expenses: selectExpenses(state.expenses, state.filters)
   };
 };
